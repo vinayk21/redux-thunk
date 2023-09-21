@@ -7,8 +7,19 @@ export const comicdata = () => async (dispatch) => {
     let res = await axios.get(
       `https://gateway.marvel.com:443/v1/public/characters?apikey=99e9936c87d485c889aa77e299bdda7c&ts=1&hash=ae1895a77e42f57a2ff88de40c57a3e6`
     );
-    dispatch({ type: GET_USER_SUC, payload: res?.data?.data?.results});
+    dispatch({ type: GET_USER_SUC, payload: res?.data?.data?.results });
   } catch (err) {
     dispatch({ type: GET_USER_FAIL, payload: err });
+  }
+};
+export const charactersdata = () => async (dispatch) => {
+  try {
+    dispatch({ type: "REQ" });
+    let res = await axios.get(
+      `https://gateway.marvel.com:443/v1/public/comics?apikey=99e9936c87d485c889aa77e299bdda7c&ts=1&hash=ae1895a77e42f57a2ff88de40c57a3e6&limit=100`
+    );
+    dispatch({ type: "SUC", payload: res });
+  } catch (err) {
+    dispatch({ type: "FAIL", payload: err });
   }
 };

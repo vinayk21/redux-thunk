@@ -18,3 +18,15 @@ export const comdata = (state={resdata:[]},action)=>{
           default : return{state}
     }
   }
+  export const comicdata=(state=[],actions)=>{
+   switch(actions.type){
+    case "REQ":
+      return{stat:[],loading:true}
+    case "SUC":
+      return{stat:actions.payload,loading:false}
+    case "FAIL":
+      return {stat:[],err:actions.payload}  
+      default : return{state}
+
+   }
+  }
